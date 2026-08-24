@@ -1,17 +1,15 @@
 # Week 2 Reflection
 
-## Main principle / heuristic
+The main change in my strategy this week was to react more strongly to the evidence returned by the first set of queries instead of applying a similar exploration/exploitation balance to every function. Week 1 produced very different outcomes. Functions 4, 5, 6 and 8 improved substantially, Function 2 improved slightly, while Functions 3 and 7 did not improve and Function 1 again returned essentially zero. This prompted me to make the Week 2 strategy more function-specific.
 
-_To be completed after the Week 2 submission._
+I used more exploitation for functions where the new observation confirmed a promising region. Function 5 was the clearest example: the output increased from an initial best of about 1088.86 to 2741.31, and the task description indicates a typically unimodal surface. I therefore stayed close to the successful boundary region. Function 4 also improved from a negative initial best to a positive value, so I used a local Gaussian Process/Expected Improvement search around that point. Functions 6 and 8 were handled similarly, but with somewhat more uncertainty allowed because of their higher dimensionality.
 
-## Most challenging function(s)
+Exploration remained important where the evidence was weak. Function 1 has produced almost entirely zero outputs, so a regression model has little signal to learn from. I therefore used a maximin, space-filling point in a poorly sampled region. For Functions 3 and 7, the Week 1 queries were worse than the historical best, so I reduced aggressive extrapolation and moved back toward regions supported by stronger observations.
 
-_To be completed after reviewing the available observations and uncertainty._
+The recent outputs influenced the strategy more than any single modelling technique. I used Gaussian Process predictions, Expected Improvement and UCB as decision-support tools, but I also considered the known characteristics of each function and the distance from existing observations. This prevented the acquisition function from being treated as an automatic answer.
 
-## What changed after the latest returned outputs?
+A simple linear regression would probably violate several assumptions for these functions. The challenge explicitly describes non-linearity, local maxima and, for some functions, noisy responses. A global linear relationship between inputs and output would therefore be unrealistic, especially for Functions 2, 4 and 8. The small sample size relative to dimensionality would also make coefficient estimates unstable in the higher-dimensional functions.
 
-_To be completed after comparing predicted and observed performance._
+Logistic regression could be used only after reframing the task, for example by classifying points as "high-performing" versus "not high-performing" using a threshold. It might provide an interpretable view of which variables increase the probability of entering a promising region, but a linear decision boundary would probably be too restrictive where several disconnected high-value regions exist.
 
-## Strategy for the next round
-
-_To be completed after the Week 2 analysis._
+I still found individual feature effects useful as a diagnostic. For example, Function 2 appears to respond strongly to its first coordinate, while Function 5's successful observations support low values of the first coordinate and high values of the third and fourth. I used these patterns to sanity-check the Bayesian optimisation recommendations before choosing the Week 2 queries.
