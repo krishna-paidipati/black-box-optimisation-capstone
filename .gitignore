@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Course-provided/raw data: keep local unless redistribution is permitted
+/data/raw/**
+!/data/raw/README.md
+
+# Generated artefacts
+outputs/
+*.log
