@@ -1,17 +1,15 @@
 # Week 6 Reflection
 
-## Main principle / heuristic
+The CNN idea that influenced me most this week was progressive feature extraction. I did not apply a CNN directly because my BBO observations are small tabular datasets rather than images. Instead, I translated the idea into a multi-resolution search process. I used non-linear feature-importance estimates to identify which input dimensions currently appear most influential. Important dimensions were refined with smaller local perturbations, while less influential dimensions were allowed wider movement so that exploration was not removed too early.
 
-_To be completed after the Week 6 submission._
+The progression from LeNet to later CNNs also reminded me that performance improvements normally come from repeated architectural and training refinements rather than one isolated breakthrough. My capstone has developed similarly. For example, Function 5 improved from an initial best of about 1088.86 to 4440.48 through several rounds of local refinement. Function 8 has also moved progressively upward to about 9.946. These gains came from accumulating evidence and adjusting the search strategy rather than relying on one algorithm.
 
-## Most challenging function(s)
+I faced a clear analogue of the CNN depth-versus-efficiency trade-off. A more complicated surrogate ensemble could potentially model additional interactions, but each function still has relatively few observations. Increasing complexity therefore raises overfitting risk and makes the query rationale harder to defend. I continued to use the Gaussian Process as the primary surrogate because its uncertainty estimate is directly useful for exploration versus exploitation. The neural and tree-based models remain diagnostics.
 
-_To be completed after reviewing the available observations and uncertainty._
+Pooling provided a useful conceptual analogy this round. CNN pooling preserves important information while reducing unnecessary detail. In my search, I effectively “pool” the candidate space by first identifying high-performing observations and important dimensions, then concentrating computation around those regions. Activation functions are less directly relevant to query selection, while the loss concept remains important because every new black-box response tells me how inaccurate my previous surrogate expectation was.
 
-## What changed after the latest returned outputs?
+The Week 5 outcomes reinforced the need to avoid overfitting recent results. Functions 4, 5 and 8 improved, but other functions showed that a locally promising direction can deteriorate quickly. For Function 7, for example, the Week 2 result remains better than later nearby points. I therefore use historical best regions rather than assuming the latest point is automatically the best guide.
 
-_To be completed after comparing predicted and observed performance._
+Andrea Dunbar's discussion of edge-AI deployment also provides a useful benchmark perspective. In a real system, the most complex model is not automatically the best if it consumes excessive computation, is difficult to maintain or behaves unpredictably. I apply the same principle to the capstone. Success is not only the single highest objective value. I also evaluate query efficiency, stability across nearby observations, computational cost, reproducibility and how clearly I can explain why a point was selected.
 
-## Strategy for the next round
-
-_To be completed after the Week 6 analysis._
+My Week 6 strategy is therefore intentionally structured but lightweight: Gaussian Process uncertainty for the primary ranking, feature-importance diagnostics for dimensional sensitivity, and local multi-resolution refinement around regions supported by the accumulated data.
