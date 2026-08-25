@@ -29,10 +29,15 @@ def coarse_to_fine_candidates(
     Returns
     -------
     candidates:
-        Refined candidate matrix in the unit hypercube.
+        Refined candidate matrix in the unit hypercube, sorted from highest
+        Expected Improvement to lowest.
     scores:
-        Expected-improvement score for each refined candidate.
+        Expected Improvement score corresponding to each returned candidate.
     """
+    observed_y = np.asarray(observed_y, dtype=float).reshape(-1)
+    if observed_y.size == 0:
+        raise ValueError("observed_y must contain at least one objective value")
+
     rng = np.random.default_rng(random_state)
 
     coarse = rng.uniform(0.0, 1.0, size=(n_coarse, n_dims))
@@ -40,27 +45,29 @@ def coarse_to_fine_candidates(
     coarse_score = expected_improvement(
         coarse_mean,
         coarse_std,
-        best=float(np.max(observed_y)),
+        best_y=float(np.max(observed_y)),
+        xi=0.01,
     )
 
     elite_index = np.argsort(coarse_score)[-n_elite:]
     elite = coarse[elite_index]
 
-    local = []
+    local_batches = []
     for centre in elite:
         points = centre + rng.normal(
             loc=0.0,
             scale=local_scale,
             size=(local_per_elite, n_dims),
         )
-        local.append(np.clip(points, 0.000001, 0.999999))
+        local_batches.append(np.clip(points, 0.000001, 0.999999))
 
-    refined = np.vstack([elite, *local])
+    refined = np.vstack([elite, *local_batches])
     mean, std = gp.predict(refined, return_std=True)
     score = expected_improvement(
         mean,
         std,
-        best=float(np.max(observed_y)),
+        best_y=float(np.max(observed_y)),
+        xi=0.01,
     )
 
     order = np.argsort(score)[::-1]
