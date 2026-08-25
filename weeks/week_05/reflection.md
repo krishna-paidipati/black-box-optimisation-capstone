@@ -1,17 +1,13 @@
 # Week 5 Reflection
 
-## Main principle / heuristic
+This round made me think about hierarchical feature learning less as a reason to build a deeper neural network and more as a way to structure the optimisation process in stages. My BBO data are still small and tabular, so a deep architecture similar to AlexNet would be inappropriate. Instead, I used a coarse-to-fine strategy: first identify promising regions from all accumulated observations, then refine locally using Gaussian Process predictions, uncertainty, the neural surrogate from Week 4 and the observed response history.
 
-_To be completed after the Week 5 submission._
+The AlexNet/ImageNet example also reinforced that large performance improvements usually come from combining several advances rather than one isolated change. My capstone results show a similar pattern on a much smaller scale. Function 5 has improved from an initial best of about 1088.86 to 4436.36 through repeated local refinement. That improvement did not come from one model alone; it came from progressively combining prior observations, problem structure, surrogate predictions and careful exploitation.
 
-## Most challenging function(s)
+I faced a similar trade-off to neural-network depth versus efficiency when deciding how widely to explore. Exploring broadly gives more information about the response surface but uses a scarce query on a point that may perform poorly. Exploiting a known basin can improve the objective quickly but risks becoming trapped around a local maximum. This week I therefore used stronger exploitation for Functions 2, 4, 5, 7 and 8, while Function 1 still required local probing because its useful signal is extremely narrow.
 
-_To be completed after reviewing the available observations and uncertainty._
+The neural-network building blocks helped me think more explicitly about the learning loop. The inputs are candidate coordinates, the surrogate prediction acts as the model output, prediction error is analogous to a loss, gradients provide local directional information, and each newly returned black-box result acts like new evidence that changes the next model fit. The most important lesson is that gradients are only useful when the surrogate itself is trustworthy. Week 4 showed that neural extrapolation could be misleading for Functions 3 and 6, so I did not let neural gradients override stronger empirical evidence this round.
 
-## What changed after the latest returned outputs?
+In terms of framework style, my current approach is closer to rapid prototyping than a fully productionised optimisation system. However, I am deliberately moving toward a structured design by keeping reusable code, weekly data records, validated query formatting, documented modelling decisions and a cumulative Git history. PyTorch is currently used for the neural surrogate because it gives direct control over gradients, while scikit-learn is used for Gaussian Processes and SVM diagnostics.
 
-_To be completed after comparing predicted and observed performance._
-
-## Strategy for the next round
-
-_To be completed after the Week 5 analysis._
+Real-world deep-learning examples such as those discussed by Giovanni Liotta also influence how I define success. A useful model should not be judged only by whether one query beats the previous maximum. I also consider whether the strategy is stable, whether improvements repeat in nearby regions, and whether the method uses the limited evaluation budget efficiently. For my capstone, success therefore means both improving the best-known outputs and developing an evidence-based optimisation process that becomes more reliable as the data set grows.
