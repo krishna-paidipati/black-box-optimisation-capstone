@@ -1,17 +1,15 @@
 # Week 4 Reflection
 
-## Main principle / heuristic
+The fourth round uses the accumulated initial data plus three completed query rounds. My main change this week was to add a small neural-network surrogate ensemble as a secondary diagnostic rather than replacing the Gaussian Process approach. The sample sizes are still small, so I did not consider a neural network reliable enough to act as the sole optimiser. Instead, I compared its predictions and input gradients with Gaussian Process recommendations and the observed history.
 
-_To be completed after the Week 4 submission._
+Some observations now behave like support points around rapid changes in performance. Function 5 is the clearest example: the Week 1, Week 2 and Week 3 points in the same high-performing region produced approximately 2741, 2537 and 3606 respectively. Function 7 also has a clear contrast between the Week 2 result of 1.596 and nearby Week 3 result of about 1.000. These observations help define where the response appears to change rapidly, so I use them to refine local searches rather than treating all nearby points as equivalent.
 
-## Most challenging function(s)
+I trained a compact feed-forward neural network only as a surrogate diagnostic. Backpropagation allowed me to calculate the gradient of the predicted output with respect to each input. Because every function is a maximisation problem, I interpret positive gradient directions as directions that may increase the predicted output. I did not blindly follow these gradients: with very limited data, neural networks can extrapolate unrealistically near boundaries. I therefore required the neural-network direction to be broadly consistent with the Gaussian Process or with repeated empirical evidence before using it.
 
-_To be completed after reviewing the available observations and uncertainty._
+The classification framing is also useful. Observations could be labelled “good” when their outputs fall above a chosen quantile and “bad” otherwise. Logistic regression would give an interpretable linear boundary, an RBF SVM could represent a nonlinear boundary, and a neural network could learn an even more flexible boundary. The trade-off is that misclassifying a potentially good region as bad could stop exploration too early, while a very flexible classifier could overfit the small sample.
 
-## What changed after the latest returned outputs?
+For query guidance, the Gaussian Process remains the most appropriate primary model because it explicitly represents predictive uncertainty, which is central to Bayesian optimisation. The neural network adds flexibility and gradient information, while the SVM diagnostic from the previous round helps identify promising regions. This combination gives me a practical balance between interpretability, uncertainty and nonlinear modelling.
 
-_To be completed after comparing predicted and observed performance._
+The neural-network gradients were most useful for the higher-dimensional functions. For Function 5 they reinforced the observed direction towards a very small first coordinate and very high second and third coordinates. For Function 8 they supported keeping the fifth coordinate near its upper boundary while reducing several earlier coordinates. In contrast, unstable gradients were treated as evidence not to trust the neural surrogate in isolation.
 
-## Strategy for the next round
-
-_To be completed after the Week 4 analysis._
+Compared with linear or logistic regression, the neural network can represent nonlinear interactions more naturally, but the additional flexibility is only worthwhile when used cautiously. At the current data volume, I view it as a complementary diagnostic rather than the main optimiser. As more observations arrive, I can test whether its out-of-sample behaviour becomes stable enough to play a larger role.
