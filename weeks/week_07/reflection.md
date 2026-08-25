@@ -1,17 +1,15 @@
 # Week 7 Reflection
 
-## Main principle / heuristic
+This week I made hyperparameter tuning an explicit part of the Gaussian Process workflow rather than relying on one fixed surrogate configuration. I prioritised two hyperparameters that directly affect the behaviour of my current model: the kernel family and the observation-noise parameter `alpha`. I compared RBF and Matérn kernels with different smoothness assumptions because the eight black-box functions clearly do not all have the same response characteristics. I also tested several `alpha` values because some functions appear smooth while others contain noise or abrupt local changes.
 
-_To be completed after the Week 7 submission._
+The tuning process changed my query strategy by making me less willing to apply one acquisition model uniformly across all functions. I used shuffled K-fold cross-validation to compare kernel/noise configurations using normalised RMSE, then refitted the selected Gaussian Process on all observations. Expected Improvement remained an important diagnostic, but I also compared its recommendation with the best empirical regions before selecting the final portal query. This was especially important in high-dimensional functions where a high acquisition value can result mainly from uncertainty.
 
-## Most challenging function(s)
+My tuning method was a small structured search over kernel families and noise levels. This is similar to grid search, but the kernel itself still optimises its continuous length scales through Gaussian Process marginal-likelihood optimisation. I chose this approach because the candidate set is small enough to evaluate transparently. Random search would become more attractive with many continuous hyperparameters, while Bayesian optimisation or Hyperband would be more appropriate for expensive neural-network training. Hyperband is less relevant to the current GP because there is no natural partial-training budget comparable with neural-network epochs.
 
-_To be completed after reviewing the available observations and uncertainty._
+As the data grows, several limitations are becoming clearer. Some functions show diminishing returns: Function 5 has effectively plateaued near `[0,1,1,1]`, while Functions 4 and 7 respond to very small changes around strong basins. Function 1 remains difficult because useful outputs are concentrated in an extremely narrow region, so I use a log transform for surrogate fitting while leaving the true maximisation objective unchanged. Higher-dimensional Functions 7 and 8 also remain sparse despite receiving additional observations.
 
-## What changed after the latest returned outputs?
+Hyperparameter tuning therefore has to be judged by generalisation rather than training fit. A very flexible kernel can reproduce the observed points but still provide unreliable acquisition recommendations. I use cross-validation as a check against this and continue to treat model predictions as evidence rather than certainty.
 
-_To be completed after comparing predicted and observed performance._
+For larger datasets or more complex models, I would expand the tuning space to include acquisition parameters, kernel priors, neural-network width, regularisation and learning rate. At that stage, random search or Bayesian optimisation could tune the optimiser itself. The BBO capstone makes this relationship particularly clear because hyperparameter tuning is itself a black-box optimisation problem.
 
-## Strategy for the next round
-
-_To be completed after the Week 7 analysis._
+This process is useful preparation for professional ML work because model choices rarely reveal their consequences immediately. I need to work with incomplete information, define an evaluation criterion, compare alternatives within a resource budget and revise the configuration as new evidence arrives. That is more realistic than assuming there is one universally optimal model or hyperparameter setting.
