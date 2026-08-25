@@ -1,17 +1,11 @@
 # Week 3 Reflection
 
-## Main principle / heuristic
+The main change in my Week 3 strategy was to rely more strongly on the accumulated evidence from the first two rounds rather than applying a similar exploration/exploitation balance to every function. The Week 2 outputs showed that some promising regions were stable while others were not. Function 7 improved substantially to 1.5964, whereas Functions 3, 5, 6 and 8 did not improve on their best previous values. This led me to use local exploitation where repeated evidence supported a region, while returning to broader or alternative search directions where the latest result weakened confidence.
 
-_To be completed after the Week 3 submission._
+I still balance exploration and exploitation independently for each function. Function 1 remains exploration-heavy because almost every observed output is effectively zero, so the current data provide almost no useful regression signal. I therefore selected a maximin point in the most sparsely sampled part of the two-dimensional domain. Functions 4, 5, 7 and 8 use more exploitation because they have already produced clearly promising regions. Function 5 is especially suited to local refinement because the problem description indicates a typically unimodal surface and both Week 1 and Week 2 produced very large values in the same general region.
 
-## Most challenging function(s)
+SVMs provide a useful additional perspective, although I would not replace Bayesian optimisation with an SVM for the continuous maximisation task. A soft-margin SVM could classify observations into high- and low-performing regions after defining a threshold such as the upper quartile of observed outputs. This may help identify promising areas while tolerating noisy or overlapping observations. An RBF-kernel SVM would be more appropriate than a linear SVM because the response surfaces are likely nonlinear. I also used SVM-style reasoning as a diagnostic: candidate points supported by both the surrogate model and a high-performance classification region receive greater confidence.
 
-_To be completed after reviewing the available observations and uncertainty._
+As the data set grows, limitations of the current surrogate models become more apparent. Gaussian Processes can become sensitive to kernel and length-scale choices, particularly in Functions 7 and 8 where the number of dimensions is high relative to the number of observations. There is also a risk of overfitting local structure or assigning excessive uncertainty to boundaries. Feature-importance diagnostics suggest that some dimensions may matter much more than others, but I would not remove features yet because the sample size is still small.
 
-## What changed after the latest returned outputs?
-
-_To be completed after comparing predicted and observed performance._
-
-## Strategy for the next round
-
-_To be completed after the Week 3 analysis._
+This black-box setting is useful preparation for practical data science because decisions must be made with incomplete information. There is no single model that can reveal the true function. Instead, I need to combine domain hints, model predictions, uncertainty, historical results and simple sanity checks, then update the strategy when new evidence arrives. This is similar to real projects where data are limited, experiments are costly and model assumptions must be revised as more information becomes available.

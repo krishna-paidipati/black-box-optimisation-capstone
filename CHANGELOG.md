@@ -1,16 +1,17 @@
 # Changelog
 
-## Week 1 — 2026-08-23
+## Week 3
+- Added the eight Week 2 returned outputs.
+- Reassessed the best-known value for every function.
+- Added RBF soft-margin SVM classification as a high/low performance diagnostic.
+- Adapted exploration versus exploitation independently for each function.
+- Added Week 3 portal-ready query strings and reflection.
 
-- Added reusable BBO utility modules.
-- Added initial-data loader and summary helpers.
-- Added Gaussian Process surrogate helper.
-- Added UCB and Expected Improvement acquisition functions.
-- Added random candidate generation and nearest-observation distance checks.
-- Recorded the eight Week 1 submitted query points.
-- Added portal-format validation.
-- Added Week 1 reflection template and strategy notes.
+## Week 2
+- Added the eight Week 1 returned outputs.
+- Developed the second-round query strategy using updated surrogate evidence.
+- Added Week 2 portal-ready query strings and reflection.
 
-## Weeks 2–13
-
-To be updated after each returned observation and next-round submission.
+## Week 1
+- Initialised the repository and reusable BBO utilities.
+- Recorded the initial Week 1 query strategy for all eight functions.
