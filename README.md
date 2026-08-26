@@ -47,6 +47,21 @@ SVM, neural-network, gradient and tree-based analyses are introduced only as sup
 
 A detailed explanation of the research foundations, software choices, implemented methods, limitations and planned technical investigation is available in [`docs/technical_foundations.md`](docs/technical_foundations.md).
 
+## Project documentation
+
+The project includes formal documentation describing both the accumulated
+dataset and the optimisation approach:
+
+- [`Datasheet`](docs/datasheet.md) — documents the motivation, composition,
+  collection process, preprocessing, intended uses, distribution and
+  limitations of the BBO query/evaluation dataset.
+- [`Model Card`](docs/model_card.md) — documents the optimisation strategy,
+  evolution across rounds, performance, assumptions, limitations,
+  reproducibility and ethical considerations.
+
+These documents are maintained as living project artefacts and will be updated
+as additional capstone results become available.
+
 ## Core technologies
 
 The current implementation primarily uses:
