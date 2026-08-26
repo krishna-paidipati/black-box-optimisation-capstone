@@ -1,17 +1,10 @@
-# Week 8 Reflection
+# Week 8 Reflection — Prompting and Decoding Strategies
 
-## Main principle / heuristic
+The submitted reflection treats structured prompting as decision support around
+the existing numerical BBO workflow rather than claiming that an LLM replaces
+the Gaussian Process/acquisition strategy.
 
-_To be completed after the Week 8 submission._
-
-## Most challenging function(s)
-
-_To be completed after reviewing the available observations and uncertainty._
-
-## What changed after the latest returned outputs?
-
-_To be completed after comparing predicted and observed performance._
-
-## Strategy for the next round
-
-_To be completed after the Week 8 analysis._
+Key design choices were structured function-specific context, conservative
+decoding for reproducibility, strict six-decimal output constraints, separation
+of the eight functions, and reliance on observed numerical evidence to guard
+against hallucinated objective values or hidden-function assumptions.
