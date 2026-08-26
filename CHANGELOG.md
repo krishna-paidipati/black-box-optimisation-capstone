@@ -1,11 +1,15 @@
 # Changelog
 
+## Week 9
+- Added the eight confirmed Week 8 outputs.
+- Added best-so-far scaling and diminishing-return diagnostics.
+- Added adaptive local/global candidate-budget logic.
+- Retained Gaussian Process Expected Improvement as the quantitative ranking
+  foundation.
+- Added Week 9 queries and reflection.
+
 ## Week 8
-- Added the eight confirmed Week 7 outputs.
-- Added structured prompt decision-support utilities.
-- Added strict Week 8 query-format validation.
-- Kept numerical BBO evidence separate from LLM-assisted reasoning.
-- Added Week 8 queries, README and reflection record.
+- Added Week 7 outputs and structured prompt decision-support utilities.
 
 ## Week 7
 - Added Week 6 outputs and explicit GP kernel-family / alpha tuning.
