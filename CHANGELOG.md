@@ -1,16 +1,19 @@
 # Changelog
 
+## Week 12
+- Added confirmed Week 11 outputs.
+- Added PCA variance and redundancy diagnostics.
+- Added Week 12 queries and reflection.
+- Updated README, datasheet and model card through Week 12.
+
 ## Week 11
-- Added confirmed Week 10 outputs.
-- Added KMeans and nearest-neighbour cluster diagnostics.
-- Added Week 11 queries, runner, README and reflection.
-- Updated main README, datasheet and model card through Week 11.
+- Added clustering and nearest-neighbour diagnostics.
 
 ## Week 10
-- Added transparent per-function decision tracing.
+- Added transparent decision tracing.
 
 ## Week 9
-- Added scaling-aware optimisation diagnostics.
+- Added scaling-aware diagnostics.
 
 ## Week 8
 - Added structured prompt decision support.
@@ -19,10 +22,10 @@
 - Added GP hyperparameter tuning.
 
 ## Week 6
-- Added feature-guided multi-resolution refinement.
+- Added feature-guided refinement.
 
 ## Week 5
-- Added coarse-to-fine Expected Improvement refinement.
+- Added coarse-to-fine Expected Improvement.
 
 ## Week 4
 - Added neural-surrogate and gradient diagnostics.
@@ -31,7 +34,7 @@
 - Added RBF SVM diagnostics.
 
 ## Week 2
-- Added function-specific exploration/exploitation updates.
+- Added function-specific exploration/exploitation.
 
 ## Week 1
-- Initialised the repository and baseline Gaussian Process workflow.
+- Initialised the repository and GP baseline.
