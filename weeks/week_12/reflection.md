@@ -29,7 +29,7 @@ boundary between the successful Week 10 point and unsuccessful Week 11 point.
 Function 2 is treated similarly around the stronger x2≈0.40 region, while
 Function 6 moves back toward its stronger Week 10 neighbourhood.
 
-This round will strongly influence the final Week 13 submission. Where Week 12
+This round will strongly influence the final-round submission. Where Week 12
 confirms an improving local direction, the final round can use a very small
 exploitation step. Where the result shows a plateau, noise or another boundary
 crossing, the final query should test the most informative remaining

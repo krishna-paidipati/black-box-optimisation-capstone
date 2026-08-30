@@ -1,5 +1,15 @@
 # Changelog
 
+## Final round
+- Added confirmed Week 12 portal outputs.
+- Added the authoritative submitted final-round queries.
+- Added the RL-focused final reflection covering MAB exploration/exploitation,
+  Q-learning-style reward updates, AlphaGo Zero, and model-free versus
+  model-based learning.
+- Added RL-inspired feedback diagnostics without replacing the GP optimiser.
+- Added a final-round validator and portal-query formatter.
+- Updated README, datasheet and model card to confirmed results through Week 12.
+
 ## Week 12
 - Added confirmed Week 11 outputs.
 - Added PCA variance and redundancy diagnostics.
@@ -13,7 +23,7 @@
 - Added transparent decision tracing.
 
 ## Week 9
-- Added scaling-aware diagnostics.
+- Added scale-aware diagnostics.
 
 ## Week 8
 - Added structured prompt decision support.
