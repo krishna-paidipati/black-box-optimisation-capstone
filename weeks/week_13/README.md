@@ -1,18 +1,30 @@
-# Week 13
+# Final Round — Reinforcement-Learning-Informed Decision Policy
 
-## Status
+This folder records the final submitted BBO queries and the confirmed Week 12
+portal outputs that informed them.
 
-Pending previous-round outputs.
+The final strategy is predominantly exploitative because the accumulated
+history identifies several stable high-performing neighbourhoods. Reinforcement
+learning concepts are used as an interpretive framework rather than as a new
+replacement optimiser:
 
-## Checklist
+- **MAB:** exploration is reduced as confidence in productive regions grows.
+- **Q-learning analogy:** each returned objective value updates the expected
+  usefulness of a local search direction.
+- **MDP/feedback adaptation:** the next decision depends on the observed state
+  of the search, including improvement, deterioration, plateauing and possible
+  noise.
+- **Model-based planning:** Gaussian Process and acquisition reasoning remain
+  the primary numerical foundation for anticipating useful queries.
 
-- [ ] Record the previous week's returned outputs.
-- [ ] Append new observations to the local modelling dataset.
-- [ ] Recompute each function's current best point and output.
-- [ ] Refit or revise the surrogate model.
-- [ ] Compare exploration and exploitation candidates.
-- [ ] Select and validate one new query per function.
-- [ ] Submit queries through the capstone portal.
-- [ ] Record the exact submitted strings.
-- [ ] Write the weekly reflection.
-- [ ] Update the root README and CHANGELOG if the strategy changed materially.
+## Files
+
+- `week_12_outputs.json`: confirmed Week 12 portal responses.
+- `queries.json`: authoritative final-round portal inputs.
+- `reflection.md`: submitted final reflection connecting BBO to RL concepts.
+- `rl_feedback_diagnostics.py`: transparent reward-feedback interpretation.
+- `run_final_round.py`: validates dimensions/ranges and prints portal-formatted
+  queries plus Week 11-to-Week 12 feedback signals.
+
+Final-round outputs are not recorded here unless and until they are returned by
+the portal.
