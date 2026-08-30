@@ -23,7 +23,7 @@ replacement optimiser:
 - `queries.json`: authoritative final-round portal inputs.
 - `reflection.md`: submitted final reflection connecting BBO to RL concepts.
 - `rl_feedback_diagnostics.py`: transparent reward-feedback interpretation.
-- `run_final_round.py`: validates dimensions/ranges and prints portal-formatted
+- `run_week_13.py`: validates dimensions/ranges and prints portal-formatted
   queries plus Week 11-to-Week 12 feedback signals.
 
 Final-round outputs are not recorded here unless and until they are returned by

@@ -40,8 +40,8 @@ model-based planning from the GP surrogate and acquisition logic.
 ## Evidence status
 
 Confirmed Week 12 outputs are stored in
-`weeks/final_round/week_12_outputs.json`. The submitted final-round queries are
-stored in `weeks/final_round/queries.json`. Final-round outputs are not included
+`weeks/week_13/week_12_outputs.json`. The submitted final-round queries are
+stored in `weeks/week_13/queries.json`. Final-round outputs are not included
 until the portal returns them.
 
 ## Limitations

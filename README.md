@@ -17,34 +17,38 @@ functions under a strict sequential query budget.
 - Week 10: transparent decision tracing
 - Week 11: clustering diagnostics
 - Week 12: PCA variance and redundancy diagnostics
-- Final round: RL-informed feedback interpretation and predominantly local exploitation
+- Week 13: final-round RL-informed feedback interpretation and predominantly local exploitation
 
 Gaussian Process modelling remains the primary uncertainty-aware numerical
 foundation. The later diagnostic methods support interpretation and query
 selection; they do not replace the core optimiser.
 
-## Final-round perspective
+## Week 13 - Final-round perspective
 
 The final iteration connects the accumulated BBO evidence to reinforcement
 learning ideas. Early rounds placed greater value on exploration, whereas the
 larger data set allowed the final policy to concentrate on proven local regions.
+
 Returned objective values were treated as feedback that strengthened or weakened
 confidence in each search direction, analogous to updating reward expectations.
+This informed whether the next query should exploit a promising neighbourhood,
+tighten around a boundary, or retain limited exploration where uncertainty
+remained important.
 
 The implementation remains best described as a hybrid of trial-and-error
-feedback and model-based planning: the hidden functions supply black-box reward
-signals, while GP surrogate modelling and acquisition reasoning anticipate where
-future evaluations may be valuable.
+feedback and model-based planning. The hidden functions supply black-box reward
+signals, while Gaussian Process surrogate modelling and acquisition reasoning
+anticipate where future evaluations may be valuable.
 
 ## Documentation
 
 - [`Technical Foundations`](docs/technical_foundations.md)
 - [`Datasheet`](docs/datasheet.md)
 - [`Model Card`](docs/model_card.md)
-- [`Final Round`](weeks/final_round/README.md)
+- [`Week 13 - Final Round`](weeks/week_13/README.md)
 
 ## Current status
 
-The repository records the **submitted final-round queries** and **confirmed
-portal outputs through Week 12**. Final-round outputs are intentionally left
-unrecorded until they are returned by the portal.
+The repository records the **submitted Week 13 final-round queries** and
+**confirmed portal outputs through Week 12**. Week 13 outputs are intentionally
+left unrecorded until they are returned by the portal.

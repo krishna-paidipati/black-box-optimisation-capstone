@@ -8,9 +8,9 @@ query/output pair per function per completed evaluation round. The eight hidden
 maximisation functions range from 2D to 8D.
 
 The repository stores each round's submitted query separately from the outputs
-that later informed the next round. `weeks/final_round/week_12_outputs.json`
+that later informed the next round. `weeks/week_13/week_12_outputs.json`
 therefore contains the confirmed Week 12 feedback used to select the final
-queries, while `weeks/final_round/queries.json` records the final submitted
+queries, while `weeks/week_13/queries.json` records the final submitted
 inputs.
 
 Later rounds are increasingly concentrated around high-performing regions. This
