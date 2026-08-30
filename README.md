@@ -23,6 +23,27 @@ Gaussian Process modelling remains the primary uncertainty-aware numerical
 foundation. The later diagnostic methods support interpretation and query
 selection; they do not replace the core optimiser.
 
+## Repository structure
+
+- `src/bbo/` contains reusable optimisation utilities for data loading,
+  surrogate modelling, acquisition functions, candidate generation and
+  query formatting.
+- `weeks/week_01/` through `weeks/week_13/` preserve the sequential
+  optimisation history, submitted queries, returned outputs and weekly
+  reflections.
+- `docs/` contains the technical foundations, dataset documentation and
+  model card.
+- `scripts/validate_submission.py` validates portal query formatting.
+- `data/raw/` is intentionally excluded from version control because the
+  course-provided data are not redistributed.
+
+## Running the project
+
+Create an environment and install the dependencies:
+
+```bash
+pip install -r requirements.txt
+
 ## Week 13 - Final-round perspective
 
 The final iteration connects the accumulated BBO evidence to reinforcement

@@ -24,14 +24,42 @@ DIMENSIONS = {
 }
 
 
+def normalise_query(value):
+    """Convert a stored query into the six-decimal portal string format."""
+    if isinstance(value, str):
+        return value
+
+    if isinstance(value, list):
+        return "-".join(f"{float(x):.6f}" for x in value)
+
+    raise TypeError(f"Unsupported query representation: {type(value).__name__}")
+
+
 def main(path: str) -> None:
-    data = json.loads(Path(path).read_text())
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+
+    # Historical files may store queries under a top-level "queries" key,
+    # while later rounds may store the function mapping directly.
+    queries = data.get("queries", data)
+
     failures = []
 
     for name, dims in DIMENSIONS.items():
-        query = data["queries"].get(name, "")
+        if name not in queries:
+            failures.append(f"{name}: missing query")
+            continue
+
+        try:
+            query = normalise_query(queries[name])
+        except (TypeError, ValueError) as exc:
+            failures.append(f"{name}: {exc}")
+            continue
+
         if not validate_query_string(query, dims):
-            failures.append(f"{name}: invalid query {query!r}; expected {dims} coordinates")
+            failures.append(
+                f"{name}: invalid query {query!r}; "
+                f"expected {dims} six-decimal coordinates"
+            )
 
     if failures:
         raise SystemExit("\n".join(failures))
@@ -41,5 +69,8 @@ def main(path: str) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        raise SystemExit("Usage: python scripts/validate_submission.py <queries.json>")
+        raise SystemExit(
+            "Usage: python scripts/validate_submission.py <queries.json>"
+        )
+
     main(sys.argv[1])

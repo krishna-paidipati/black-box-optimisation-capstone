@@ -20,3 +20,7 @@ venv/
 # Generated artefacts
 outputs/
 *.log
+
+# Course-provided BBO data
+data/raw/initial_data/
+*.npy

@@ -1,15 +1,16 @@
 # Raw data
 
-Place the course-provided `initial_data` directory here.
+The raw initial data used in this capstone were provided as part of the
+course materials and are not redistributed in this public repository.
 
-Expected layout:
+To reproduce the analyses, authorised users should place the original
+course-provided data locally under:
 
-```text
-data/raw/initial_data/function_1/initial_inputs.npy
-data/raw/initial_data/function_1/initial_outputs.npy
-...
-data/raw/initial_data/function_8/initial_inputs.npy
-data/raw/initial_data/function_8/initial_outputs.npy
-```
+`data/raw/initial_data/`
 
-Raw `.npy` files are ignored by Git by default. Remove the corresponding rule from `.gitignore` only if you have permission to redistribute the dataset.
+with one directory per function containing the corresponding
+`initial_inputs.npy` and `initial_outputs.npy` files.
+
+The submitted query coordinates and returned black-box objective values
+generated during the project are documented separately in the weekly
+experiment history.
