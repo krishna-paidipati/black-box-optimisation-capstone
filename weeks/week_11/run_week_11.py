@@ -38,6 +38,11 @@ def validate(q,d):
             raise ValueError(f"bad format {v}")
         if not 0<=float(v)<1: raise ValueError(f"out of range {v}")
 def main():
+    if not DATA_ROOT.exists():
+        raise SystemExit(
+        "Initial data not found. Place the authorised course-provided "
+        f"initial_data directory at {DATA_ROOT}"
+        )
     for fid in range(1,9):
         X,y=history(fid); bx,by,_=best_observation(X,y)
         _,s=cluster_observations(X,y,random_state=1100+fid)

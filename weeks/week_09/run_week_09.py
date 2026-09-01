@@ -13,11 +13,16 @@ authoritative portal submissions.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
-from scaling_aware_search import scaling_diagnostics
-
+ROOT = Path(__file__).resolve().parents[2]
 WEEK = Path(__file__).resolve().parent
+
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(WEEK))
+
+from scaling_aware_search import scaling_diagnostics
 
 DIMS = {
     "function_1": 2, "function_2": 2, "function_3": 3, "function_4": 4,
