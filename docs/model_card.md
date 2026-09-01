@@ -1,6 +1,6 @@
-# Model Card — BBO Sequential Optimisation Approach
+# Model Card - BBO Sequential Optimisation Approach
 
-**Version:** Final round (confirmed observations through Week 12)
+**Version:** Final - confirmed observations through Week 13
 
 ## Primary approach
 
@@ -22,7 +22,7 @@ is maximisation for all eight hidden functions.
 - Week 10: transparent decision tracing
 - Week 11: clustering diagnostics
 - Week 12: PCA variance/redundancy diagnostics
-- Final round: RL-informed reward-feedback interpretation
+- Week 13: RL-informed reward-feedback interpretation and final query selection
 
 ## Reinforcement-learning interpretation
 
@@ -30,19 +30,30 @@ The final activity uses MAB, Q-learning and MDP concepts to interpret how the
 query policy changed as observations accumulated. These concepts are not
 presented as a newly trained RL agent. Instead, returned objective values are
 viewed as reward feedback that changes confidence in local search policies.
-Exploration is reduced where repeated improvements support exploitation and is
-retained selectively where deterioration, flatness or possible noise makes the
+
+Exploration was reduced where repeated improvements supported exploitation and
+retained selectively where deterioration, flatness or possible noise made the
 current value estimate less reliable.
 
 The overall workflow therefore combines trial-and-error black-box feedback with
-model-based planning from the GP surrogate and acquisition logic.
+model-based planning from the Gaussian Process surrogate and acquisition logic.
 
-## Evidence status
+## Final evidence
 
-Confirmed Week 12 outputs are stored in
-`weeks/week_13/week_12_outputs.json`. The submitted final-round queries are
-stored in `weeks/week_13/queries.json`. Final-round outputs are not included
-until the portal returns them.
+Confirmed Week 12 outputs used for the final decision are stored in
+`weeks/week_13/week_12_outputs.json`. The submitted Week 13 queries are stored
+in `weeks/week_13/queries.json`, and their confirmed portal responses are stored
+in `weeks/week_13/week_13_outputs.json`.
+
+The final round produced new observed best values for Functions 3, 4, 5, 7 and
+8. Functions 1 and 2 improved relative to Week 12 but remained below earlier
+historical best observations. Function 6 deteriorated relative to its Week 12
+best.
+
+These outcomes are consistent with the project's central optimisation lesson:
+increasing confidence in a promising local region can justify exploitation,
+but sparse black-box feedback does not remove uncertainty or guarantee that a
+local perturbation will improve the objective.
 
 ## Limitations
 

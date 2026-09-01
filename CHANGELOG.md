@@ -7,7 +7,9 @@
 - Added the RL-focused final reflection covering multi-armed-bandit exploration/exploitation, Q-learning-style reward updates, AlphaGo Zero, and model-free versus model-based learning.
 - Added RL-inspired feedback diagnostics while retaining Gaussian Process modelling as the primary numerical optimisation foundation.
 - Added the Week 13 validator and portal-query formatter.
-- Updated the README, datasheet and model card to reflect confirmed results through Week 12 and the submitted Week 13 final round.
+- Added the confirmed Week 13 final portal outputs.
+- Recorded new observed best values for Functions 3, 4, 5, 7 and 8 in the final round.
+- Updated the README, datasheet and model card to reflect completion of all 13 BBO rounds.
 
 ## Week 12
 

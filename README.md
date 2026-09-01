@@ -34,8 +34,8 @@ selection; they do not replace the core optimiser.
 - `docs/` contains the technical foundations, dataset documentation and
   model card.
 - `scripts/validate_submission.py` validates portal query formatting.
-- `data/raw/` is intentionally excluded from version control because the
-  course-provided data are not redistributed.
+- `data/raw/` documents the expected local data layout. Course-provided raw
+  data are intentionally not redistributed in this public repository.
 
 ## Running the project
 
@@ -43,18 +43,49 @@ Create an environment and install the dependencies:
 
 ```bash
 pip install -r requirements.txt
+```
+
+The course-provided initial data are intentionally not redistributed.
+Authorised users can place the original files locally under:
+
+```text
+data/raw/initial_data/
+```
+
+with one directory per function containing the corresponding
+`initial_inputs.npy` and `initial_outputs.npy` files.
+
+A weekly query file can be checked with:
+
+```bash
+python scripts/validate_submission.py weeks/week_13/queries.json
+```
+
+The final-round summary can be run with:
+
+```bash
+python weeks/week_13/run_week_13.py
+```
 
 ## Week 13 - Final-round perspective
 
 The final iteration connects the accumulated BBO evidence to reinforcement
 learning ideas. Early rounds placed greater value on exploration, whereas the
-larger data set allowed the final policy to concentrate on proven local regions.
+larger dataset allowed the final policy to concentrate increasingly on
+high-performing local regions.
 
-Returned objective values were treated as feedback that strengthened or weakened
-confidence in each search direction, analogous to updating reward expectations.
-This informed whether the next query should exploit a promising neighbourhood,
-tighten around a boundary, or retain limited exploration where uncertainty
-remained important.
+Returned objective values were treated as feedback that strengthened or
+weakened confidence in each search direction, analogous to updating reward
+expectations. This informed whether the next query should exploit a promising
+neighbourhood, tighten around a boundary, or retain limited exploration where
+uncertainty remained important.
+
+The final round produced new observed best values for Functions 3, 4, 5, 7
+and 8. Functions 1 and 2 improved relative to Week 12 but did not exceed their
+earlier best observations, while Function 6 deteriorated relative to its Week
+12 best. These results reinforce the practical importance of balancing local
+exploitation with uncertainty when optimising sparsely observed black-box
+functions.
 
 The implementation remains best described as a hybrid of trial-and-error
 feedback and model-based planning. The hidden functions supply black-box reward
@@ -70,6 +101,6 @@ anticipate where future evaluations may be valuable.
 
 ## Current status
 
-The repository records the **submitted Week 13 final-round queries** and
-**confirmed portal outputs through Week 12**. Week 13 outputs are intentionally
-left unrecorded until they are returned by the portal.
+The capstone is complete. The repository records all 13 submitted query rounds
+and the corresponding confirmed portal outputs, including the final Week 13
+results.
